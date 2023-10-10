@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
     float timeSinceHit = 0;
     int hitNumber = -1;
 
-    // Use this for initialization
+    //initialization
     void Start () {
         characterController = GetComponent<CharacterController>();
         deathParticles = gameObject.GetComponentInChildren<DeathParticles>();
@@ -43,12 +43,11 @@ public class PlayerController : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        //variables
         Vector3 MoveDirection = new Vector3(Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical"));
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         
-        //adding hinge joint to the marine head
+        //Making the head swivel 
         if (MoveDirection == Vector3.zero)
         {
             bodyAnimator.SetBool("IsMoving", false);
@@ -60,10 +59,8 @@ public class PlayerController : MonoBehaviour {
         }
            
 
-        //showing the raycast 
+        //raycasting
         //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.green);
-
-        //raycast make the player can turn with mouse
 
         if (Physics.Raycast(ray, out hit, 1000, layerMask, QueryTriggerInteraction.Ignore))
         {
@@ -72,11 +69,9 @@ public class PlayerController : MonoBehaviour {
                 currentLookTarget = hit.point;
             }
         }
-        //1
+
         Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-        //2
         Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
-        //3
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 10f);
 
     }
