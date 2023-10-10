@@ -17,6 +17,11 @@ public class TestList : MonoBehaviour
         badguys.Add(bg3);
 
         print("List size: " + badguys.Count);
+
+        foreach (BadGuy bg in badguys)
+        {
+            print(bg.name + " " + bg.power);
+        }
     }
 
     // Update is called once per frame
