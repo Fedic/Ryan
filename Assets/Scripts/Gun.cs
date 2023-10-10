@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour {
     void fireBullet()
     {
         Rigidbody bullet = createBullet();
-        bullet.velocity = transform.parent.forward * 100;
+        bullet.velocity = transform.parent.forward * 22;
         if (IsUpgraded)
         {
             Rigidbody bullet2 = createBullet();

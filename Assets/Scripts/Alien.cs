@@ -46,6 +46,7 @@ public class Alien : MonoBehaviour
         if (isAlive)
         {
             Die();
+            //sound
             SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienDeath);
         }
         
@@ -61,8 +62,10 @@ public class Alien : MonoBehaviour
         head.velocity = new Vector3(0, 26, 3);
         onDestroy.Invoke();
         onDestroy.RemoveAllListeners();
+        //sound
         SoundManager.Instance.PlayOneShot(SoundManager.Instance.alienDeath);
         head.GetComponent<selfDestruct>().Instantiate();
+
         if (deathParticles)
         {
             deathParticles.transform.parent = null;
